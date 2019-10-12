@@ -31,6 +31,7 @@ namespace Kabunga
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
             services.AddScoped<UserRepository>();
+            services.AddScoped<ShopRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +49,7 @@ namespace Kabunga
             {
                 endpoints.MapControllerRoute("default",
                            "{controller}/{action}/{id?}",
-                           new {controller ="Home", action="Index"});
+                           new {controller ="Shop", action="Index"});
             });
         }
     }

@@ -13,7 +13,9 @@ namespace Kabunga.Data
         public DataContext(DbContextOptions<DataContext> options): base(options)
         {
         }
-
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
     }
 }

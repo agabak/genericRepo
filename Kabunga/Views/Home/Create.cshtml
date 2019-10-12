@@ -1,7 +1,8 @@
 ﻿@model CreateUserViewModel
+@inject IConfiguration  configuration
 
 <div class="container">
-    <h1>Register new user</h1>
+    <h1>Register new user @configuration.GetSection("Colors:Favourite")</h1>
     <form asp-action="Create" asp-controller="Home">
         <div class="form-group">
             <label asp-for="FirstName"></label>
