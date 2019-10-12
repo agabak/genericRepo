@@ -12,48 +12,26 @@ namespace Kabunga.Controllers
 {
     public class HomeController : Controller
     {
-
+        private readonly UserRepository _repository;
         public HomeController(UserRepository repository)
         {
             _repository = repository;
         }
 
-        private readonly UserRepository _repository;
-
         public async Task<IActionResult> Index()
         {
             var users = await _repository.GetAll();
-
             var viewModel = mapViewModel(users);
-        
             return View(viewModel);
         }
 
-        private List<UserViewModel> mapViewModel(IEnumerable<User> users)
-        {
-           // var user = new UserViewModel();
-            var newUserList = new List<UserViewModel>();
-            foreach(var us in users)
-            {
-                var user = new UserViewModel
-                            {
-                                Id = us.Id,
-                                FirstName = us.FirstName,
-                                Username = us.UserName,
-                                LastName = us.LastName
-                            };
-                
-                newUserList.Add(user);
-            }
-            return newUserList;
-        }
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(UserViewModel model)
+        public async Task<IActionResult> Create(CreateUserViewModel model)
         {
             if(ModelState.IsValid)
             {
@@ -64,7 +42,6 @@ namespace Kabunga.Controllers
                                 LastName = model.LastName,
                                 UserName = model.Username
                             };
-
                 await _repository.Insert(user);
                 return RedirectToAction("Index");
             }
@@ -107,7 +84,6 @@ namespace Kabunga.Controllers
             }
             return View();
         }
-
         public async Task<IActionResult> Detail(string id)
         {
             var user = await _repository.GetById(id);
@@ -123,6 +99,22 @@ namespace Kabunga.Controllers
                 return View(model);
             }
             return View();
+        }
+        private List<UserViewModel> mapViewModel(IEnumerable<User> users)
+        {
+            var newUserList = new List<UserViewModel>();
+            foreach (var us in users)
+            {
+                var user = new UserViewModel
+                            {
+                                Id = us.Id,
+                                FirstName = us.FirstName,
+                                Username = us.UserName,
+                                LastName = us.LastName
+                            };
+                newUserList.Add(user);
+            }
+            return newUserList;
         }
     }
 }
