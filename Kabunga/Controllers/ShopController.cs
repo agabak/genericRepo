@@ -14,10 +14,20 @@ namespace Kabunga.Controllers
         {
             _shopRepository = shopRepository;
         }
-        public IActionResult Index()
+        public async  Task<IActionResult> Index()
         {
-            var products = _shopRepository.GetAll();
+            var products = await _shopRepository.GetAll();
+            products = products.Take(10).ToList();
             return View(products);
+        }
+
+        public async Task<IActionResult> Detail(int id)
+        {
+            var product = await _shopRepository.GetById(id);
+
+            if (product != null)
+                return View(product);
+            return View();
         }
     }
 }

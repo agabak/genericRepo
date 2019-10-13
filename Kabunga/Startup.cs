@@ -30,6 +30,7 @@ namespace Kabunga
         {
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
+            services.AddTransient<DataSeed>();
             services.AddScoped<UserRepository>();
             services.AddScoped<ShopRepository>();
         }

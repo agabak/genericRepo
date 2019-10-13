@@ -8,7 +8,7 @@ namespace Kabunga.Repositories.Interface
     public interface IRepository<TEntity> where TEntity : class
     {
         Task<IEnumerable<TEntity>> GetAll();
-        Task<TEntity> GetById(string id);
+        Task<TEntity> GetById(object id);
         Task Insert(TEntity entity);
         Task<TEntity> Update(TEntity entity);
     }

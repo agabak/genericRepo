@@ -20,7 +20,7 @@ namespace Kabunga.Repositories
             var users = await dbSet.ToListAsync();
             return users;
         }
-        public virtual async Task<TEntity> GetById(string id)
+        public virtual async Task<TEntity> GetById(object id)
         {
             var user = await dbSet.FindAsync(id);
             return user;

@@ -1,7 +1,31 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
-}
+﻿@model IEnumerable<Product>
 
-<h1>Index</h1>
+    <div class="container">
+        <div>
+            <h1>Products</h1>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Price</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Category</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var art in Model)
+                {
+                    <tr>
+                        <td>$@art.Price</td>
+                        <td>@art.Title</td>
+                        <td>@art.Category</td>
+                        <td>
+                            <a class="btn btn-success"
+                               asp-action="Detail" asp-controller="Shop" asp-route-id="@art.Id">Buy</a>
+                        </td>
+                    </tr>
+                }
+        </table>
+    </div>
 

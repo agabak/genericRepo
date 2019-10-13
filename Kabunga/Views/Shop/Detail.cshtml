@@ -1,0 +1,19 @@
+﻿@model Product
+
+    <div class="container">
+        <div class="row">
+                <img src="~/img/@(Model.ArtId).jpg" width="225"  height="225"/> 
+            <ul>
+                <li><h1>@Model.Category - @Model.Size</h1></li>
+                <li>Price: $@Model.Price</li>
+                <li>Artist: @Model.Artist</li>
+                <li>Title : @Model.Title</li>
+                <li>Description: @Model.ArtDescription</li>
+            </ul>
+            <a asp-action="Index" asp-controller="Shop" class="btn btn-primary">Back to shop</a>
+
+            <button asp-action="" asp-controller="" class="btn btn-success">Add Cart</button>
+        </div>
+    </div>
+
+
